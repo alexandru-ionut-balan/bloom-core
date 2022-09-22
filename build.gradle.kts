@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "io.bloom"
-version = "0.0.1-SNAPSHOT"
+version = "2022-09-22-ROSE"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 configurations {

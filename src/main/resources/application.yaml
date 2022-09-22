@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: mongodb://bloom-dev:bloom-dev-secret@localhost:27017/
+    username: bloom-dev
+    password: bloom-dev-secret

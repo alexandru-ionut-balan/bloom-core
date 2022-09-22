@@ -1,0 +1,33 @@
+networks:
+  bloom-network:
+
+volumes:
+  bloom-persistence:
+
+services:
+  bloom-database:
+    image: mongo
+    restart: always
+    networks:
+      - bloom-network
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: bloom-dev
+      MONGO_INITDB_ROOT_PASSWORD: bloom-dev-secret
+    ports:
+      - 27017:27017
+    volumes:
+      - bloom-persistence:/data/db
+
+  bloom-db-dashboard:
+    image: mongo-express
+    restart: always
+    depends_on:
+      - bloom-database
+    networks:
+      - bloom-network
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: bloom-dev
+      ME_CONFIG_MONGODB_ADMINPASSWORD: bloom-dev-secret
+      ME_CONFIG_MONGODB_URL: mongodb://bloom-dev:bloom-dev-secret@bloom-database:27017/
